@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EloadasProjekt
 {
-    public class Class1
+    public class Eloadas
     {
     }
 }
