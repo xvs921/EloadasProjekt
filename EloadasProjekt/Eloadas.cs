@@ -69,15 +69,12 @@ namespace EloadasProjekt
         }
         public bool Teli()
         {
-            if(ferohelyek==foglalt)
-            {
-                return true;
-            }
-            return false;
+            return SzabadHelyek == 0;
         }
+
         public bool Foglalt(int sorSzam, int helySzam)
         {
-            if (sorSzam>0 && helySzam>0)
+            if (sorSzam>0 && helySzam>0 && sorSzam<=this.sorokSzama && helySzam <= this.helyekSzama)
             {
                 return foglalasok[sorSzam - 1, helySzam - 1];
             }

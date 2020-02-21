@@ -29,14 +29,18 @@ namespace EloadasProjekt.test
             Assert.AreEqual(24, eloadas.SzabadHelyek, "Hibás számítás a maradék férőhelyeknél!");
         }
         [TestCase]
-        public void EloadasTeli()
+        public void EloadasNincsTeli()
         {
-            Assert.IsFalse(eloadas.Teli(), "Üres előadás teli van");
-            for (int i = 0; i < 32; i++)
+            for (int i = 0; i < 25; i++)
             {
                 eloadas.Lefoglal();
             }
-            Assert.IsTrue(eloadas.Teli(), "Teli eloadas megsincs tele");
+            Assert.IsTrue(eloadas.Teli(), "Teli előadás mégsincs teli");
+        }
+        [TestCase]
+        public void EloadasTeli()
+        {
+            Assert.IsFalse(eloadas.Teli(), "Üres előadás teli van");
         }
         [TestCase]
         public void teliEloadasraNeLehessenHelyetFoglalni()
@@ -54,7 +58,7 @@ namespace EloadasProjekt.test
 
         void NegativHellyelLetrehozas()
         {
-            var eloadas2 = new Eloadas(-2,-1);
+            var eloadas2 = new Eloadas(-2, -1);
         }
 
         [TestCase]
@@ -65,5 +69,20 @@ namespace EloadasProjekt.test
                 var eloadas2 = new Eloadas(-2, -1);
             });
         }
+        [TestCase]
+        public void FoglaltHibasAdat()
+        {
+            Assert.Throws<ArgumentException>(() => {
+                eloadas.Foglalt(-1,2);
+            });
+        }
+        [TestCase]
+        public void FoglaltNagyobbAdat()
+        {
+            Assert.Throws<ArgumentException>(() => {
+                eloadas.Foglalt(20,4);
+            });
+        }
+        
     }
 }
