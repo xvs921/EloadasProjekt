@@ -11,8 +11,9 @@ namespace EloadasProjekt
         private bool[,] foglalasok;
         int sorokSzama;
         int helyekSzama;
+        int szabadHelyekSzama=0;
         int ferohelyek = 0;
-        int szabadHelyekSzama = 0;
+        
         int foglalt = 0;
 
         public Eloadas(int sorokSzama,int helyekSzama)
@@ -28,7 +29,7 @@ namespace EloadasProjekt
             {
                 for (int j = 0; j < helyekSzama; j++)
                 {
-                    foglalasok[sorokSzama, helyekSzama] = false;
+                    foglalasok[i, j] = false;
                     ferohelyek++;
                 }       
             }
