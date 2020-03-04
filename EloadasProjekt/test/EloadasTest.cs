@@ -83,6 +83,39 @@ namespace EloadasProjekt.test
                 eloadas.Foglalt(20,4);
             });
         }
-        
+
+        [TestCase]
+        public void Megtelt()
+        {
+            eloadas = new Eloadas(2, 2);
+            for (int i = 0; i < 4; i++)
+            {
+                eloadas.Lefoglal();
+            }
+            Assert.IsFalse(eloadas.Teli(), "Az előadás megtelt!");
+        }
+        [TestCase]
+        public void hibakezelesMegtelt()
+        {
+            Assert.Throws<ArgumentException>(Megtelt);
+            Assert.Throws<ArgumentException>(() => {
+                eloadas.Foglalt(-3, 44);
+            });
+        }
+        [TestCase]
+        public void sikeresFoglalas()
+        {
+            eloadas = new Eloadas(25, 41);
+            eloadas.Lefoglal();
+            Assert.AreEqual(true, eloadas.Foglalt(1, 4), "Sikeres foglalás!");
+        }
+        [TestCase]
+        public void HibakezelesSikeresFoglalas()
+        {
+            Assert.Throws<ArgumentException>(sikeresFoglalas);
+            Assert.Throws<ArgumentException>(() => {
+                eloadas.Foglalt(2, 7);
+            });
+        }
     }
 }
